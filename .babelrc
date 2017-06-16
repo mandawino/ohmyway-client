@@ -1,0 +1,56 @@
+{
+  "presets": ["es2015", "stage-2", "react"],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    },
+    "production": {
+    }
+  }
+}
+
+
+
+//{
+//  "presets": [
+//    ["env", { //latest
+//      "es2015": {
+//        "modules": false
+//      }
+//    }]
+//  ]
+//}
+
+//{
+//  "presets": ["es2015", "react"]
+//}
+
+
+//{
+//  "presets": [
+//    [
+//      "env", {
+//      "es2015": {
+//        "modules": false
+//      }
+//    }
+//    ],
+//    "react"
+//  ],
+//  "plugins": [
+//    "react-hot-loader/babel"
+//  ]
+//}
+
+
+//{
+//  "presets": [["es2015", { "modules": false }], "stage-2", "react"],
+//  "env": {
+//    "development": {
+//      "plugins": ["react-hot-loader/babel"] //, ["import", {"libraryName": "antd", "style": true}]
+//    },
+//    "production": {
+////      "plugins": [["import", {"libraryName": "antd", "style": true}]]
+//    }
+//  }
+//}
