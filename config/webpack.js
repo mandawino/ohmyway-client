@@ -40,16 +40,16 @@ module.exports = {
     },
     plugins: [
         new DashboardPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({
             debug: true
         }),
         new CopyWebpackPlugin([
-            {from: 'static'}
+            { from: 'static' }
         ])
     ],
     module: {
-        loaders: [
-            {
+        loaders: [{
                 test: /\.jsx?$/,
                 include: path.resolve(__dirname, '../src'),
                 exclude: /node_modules/,
