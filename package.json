@@ -7,10 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "start": "webpack-dashboard -- node server.js",
+    "start": "node server.js --progress --profile --colors",
+    "startD": "webpack-dashboard -- node server.js",
     "dev": "webpack -d --watch",
-    "build": "webpack -p",
-    "prod": "NODE_ENV=production webpack -p --progress --config config/webpack.js",
+    "build": "webpack -p --progress --config config/webpack.production.js",
+    "prod": "NODE_ENV=production webpack -p --progress --config config/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

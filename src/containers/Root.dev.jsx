@@ -4,7 +4,7 @@ import React, {Component, PropTypes} from 'react';
 
 class Root extends Component {
     render() {
-        const devTools = !window.devToolsExtension ? <DevTools /> : null
+        // const devTools = !window.devToolsExtension ? <DevTools /> : null
         return (
                 <div>
                     <p>Hello dev</p>
