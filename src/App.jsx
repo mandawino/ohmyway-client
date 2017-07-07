@@ -17,16 +17,17 @@ const store = createStore(reducer);
 
 const renderr  = () => render(
     <AppContainer>
-        <Root store={store.getState()} onIncrement={() => {store.dispatch({type: 'INCREMENT'})}} onDecrement={() => {store.dispatch({type: 'DECREMENT'})}} />
+        <Root
+            store={store.getState()}
+            onIncrement={() => {store.dispatch({type: 'INCREMENT'})}}
+            onDecrement={() => {store.dispatch({type: 'DECREMENT'})}}
+        />
     </AppContainer>, document.getElementById('app')
 );
-
-console.log('check');
 
 if (module.hot) {
     module.hot.accept('./containers/Root', () => {
         const RootContainer = require('containers/Root').default;
-        console.log('HOTTT');
         // const renderr = () =>
         render(
             <AppContainer>
@@ -41,6 +42,3 @@ if (module.hot) {
 }
 renderr();
 store.subscribe(renderr);
-
-
-console.log('finished');
