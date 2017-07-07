@@ -15,8 +15,8 @@ module.exports = {
     ],
     devtool: 'inline-source-map',
     output: {
-        path: path.resolve(__dirname, '../build'),
-        filename: 'js/bundle.js'
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js'
     },
     stats: {
         colors: true,

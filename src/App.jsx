@@ -11,30 +11,36 @@ import Root from 'containers/Root';
 // const store = configureStore();
 // const appHistory = syncHistoryWithStore(hashHistory, store);
 
-render(
+import { createStore } from 'redux';
+import reducer from 'reducers/Reducer'
+const store = createStore(reducer);
+
+const renderr  = () => render(
     <AppContainer>
-        <Root />
+        <Root store={store.getState()} onIncrement={() => {store.dispatch({type: 'INCREMENT'})}} onDecrement={() => {store.dispatch({type: 'DECREMENT'})}} />
     </AppContainer>, document.getElementById('app')
 );
+
+console.log('check');
 
 if (module.hot) {
     module.hot.accept('./containers/Root', () => {
         const RootContainer = require('containers/Root').default;
+        console.log('HOTTT');
+        // const renderr = () =>
         render(
             <AppContainer>
-                <RootContainer />
+                <RootContainer
+                    store={store.getState()}
+                    onIncrement={() => store.dispatch({type: 'INCREMENT'})}
+                    onDecrement={() => store.dispatch({type: 'DECREMENT'})}
+                />
             </AppContainer>, document.getElementById('app')
         );
     });
 }
+renderr();
+store.subscribe(renderr);
 
 
-// import React, { Component } from 'react';
-//
-// export default class App extends Component {
-//     render() {
-//         return (
-//             <h1>Hello, world.</h1>
-//         );
-//     }
-// }
+console.log('finished');

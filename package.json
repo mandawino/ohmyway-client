@@ -2,7 +2,7 @@
   "name": "ohmyway-client",
   "version": "0.1.0",
   "description": "ohmyway frontend",
-  "main": "index.jsx",
+  "main": "App.jsx",
   "directories": {
     "test": "test"
   },
@@ -23,7 +23,9 @@
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
