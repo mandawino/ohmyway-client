@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import DevTools from 'containers/DevTools';
+
 
 // import DevTools from 'containers/DevTools';
 
@@ -16,12 +18,23 @@ import React, {Component, PropTypes} from 'react';
 
 class Root extends Component {
 
+    static propTypes = {
+        value: PropTypes.number.isRequired,
+        onIncrement: PropTypes.func.isRequired,
+        onDecrement: PropTypes.func.isRequired
+    };
+
     render() {
-        return <div>
-            <h1>{this.props.store}</h1>
-            <button onClick={this.props.onIncrement}>+</button>
-            <button onClick={this.props.onDecrement}>-</button>
+        const { value, onIncrement, onDecrement } = this.props;
+        const devTools = !window.devToolsExtension ? <DevTools /> : null;
+        return (
+        <div>
+            <h1>{value}</h1>
+            <button onClick={onIncrement}>+</button>
+            <button onClick={onDecrement }>-</button>
         </div>
+        // { devTools }
+        )
     }
 }
 
