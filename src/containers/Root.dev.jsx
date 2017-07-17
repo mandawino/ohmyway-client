@@ -1,20 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import DevTools from 'containers/DevTools';
-
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 // import DevTools from 'containers/DevTools';
 
-// class Root extends Component {
-//     render() {
-//         // const devTools = !window.devToolsExtension ? <DevTools /> : null
-//         return (
-//                 <div>
-//                     <p>Hello dev</p>
-//                     {/*{ devTools }*/}
-//                 </div>
-//         );
-//     }
-// }
 
 class Root extends Component {
 
@@ -26,7 +14,7 @@ class Root extends Component {
 
     render() {
         const { value, onIncrement, onDecrement } = this.props;
-        const devTools = !window.devToolsExtension ? <DevTools /> : null;
+        // const devTools = !window.devToolsExtension ? <DevTools /> : null;
         return (
         <div>
             <h1>{value}</h1>

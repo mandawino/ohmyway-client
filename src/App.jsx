@@ -18,7 +18,7 @@ const store = createStore(reducer);
 const renderr  = () => render(
     <AppContainer>
         <Root
-            store={store.getState()}
+            value={store.getState()}
             onIncrement={() => {store.dispatch({type: 'INCREMENT'})}}
             onDecrement={() => {store.dispatch({type: 'DECREMENT'})}}
         />
