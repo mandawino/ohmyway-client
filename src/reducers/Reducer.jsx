@@ -1,25 +1,62 @@
-const Reducer = (state = 0, action) => {
+import {combineReducers} from 'redux'
 
+const todo = (state = [], action) => {
     switch (action.type) {
-        case 'INCREMENT':
-            return state+1;
-        case 'DECREMENT':
-            return state-1;
+        case 'ADD_TODO':
+            return {
+                id: action.id,
+                text: action.text,
+                completed : false
+            };
+        case 'TOGGLE_TODO':
+            if(state.id !== action.id){
+                return todo
+            }
+            return {
+                ...state,
+                completed: !state.completed
+            };
         default:
             return state
     }
-
-
-
-    // if(action.type === 'INCREMENT'){
-    //     console.log('INCREMENT')
-    //     return state+1;
-    // } else if (action.type === 'DECREMENT') {
-    //     console.log('DECREMENT')
-    //     return state-1;
-    // } else {
-    //     return state;
-    // }
 };
+
+const todos = (state = [], action) => {
+
+    switch (action.type) {
+        case 'ADD_TODO':
+            return [
+                ...state,
+                todo(undefined, action)
+            ];
+        case 'TOGGLE_TODO':
+            return state.map(t => todo(t, action));
+        default:
+            return state
+    }
+};
+
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
+    switch(action.type) {
+        case 'SET_VISIBILITY_FILTER':
+            return action.filter;
+        default:
+            return state;
+    }
+};
+
+
+
+const Reducer = combineReducers({
+    todos, //todos: todos,
+    visibilityFilter //visibilityFilter: visibilityFilter
+});
+
+// const Reducer = (state={}, action) => {
+//     return {
+//         todos: todos(state.todos, action),
+//         visibilityFilter: visibilityFilter(state.visibilityFilter, actions)
+//     }
+// };
 
 export default Reducer;

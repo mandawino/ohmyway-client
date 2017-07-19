@@ -18,9 +18,8 @@ const store = createStore(reducer);
 const renderr  = () => render(
     <AppContainer>
         <Root
-            value={store.getState()}
-            onIncrement={() => {store.dispatch({type: 'INCREMENT'})}}
-            onDecrement={() => {store.dispatch({type: 'DECREMENT'})}}
+            store={store}
+            todos={store.getState().todos}
         />
     </AppContainer>, document.getElementById('app')
 );
@@ -33,8 +32,7 @@ if (module.hot) {
             <AppContainer>
                 <RootContainer
                     store={store.getState()}
-                    onIncrement={() => store.dispatch({type: 'INCREMENT'})}
-                    onDecrement={() => store.dispatch({type: 'DECREMENT'})}
+                    todos={store.getState().todos}
                 />
             </AppContainer>, document.getElementById('app')
         );
