@@ -9,19 +9,24 @@ const todo = (state = [], action) => {
                 completed : false
             };
         case 'TOGGLE_TODO':
-            if(state.id !== action.id){
-                return todo
-            }
-            return {
-                ...state,
-                completed: !state.completed
-            };
+            // if(state.id !== action.id){
+            //     return state
+            // }
+            // return {
+            //     ...state,
+            //     completed: !state.completed
+            // };
+            return (state.id === action.id)
+                    ? {...state, completed: !state.completed}
+                    : state;
         default:
-            return state
+            return state;
     }
 };
 
 const todos = (state = [], action) => {
+    console.log("todo state : ", state);
+    console.log("todo action : ", action);
 
     switch (action.type) {
         case 'ADD_TODO':
@@ -32,7 +37,7 @@ const todos = (state = [], action) => {
         case 'TOGGLE_TODO':
             return state.map(t => todo(t, action));
         default:
-            return state
+            return state;
     }
 };
 

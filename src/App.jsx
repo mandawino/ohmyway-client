@@ -19,7 +19,9 @@ const renderr  = () => render(
     <AppContainer>
         <Root
             store={store}
-            todos={store.getState().todos}
+            //{...store.getState()}
+             todos={store.getState().todos}
+             visibilityFilter={store.getState().visibilityFilter}
         />
     </AppContainer>, document.getElementById('app')
 );
