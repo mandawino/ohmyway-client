@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
+import {connect} from 'react-redux';
 // import DevTools from 'containers/DevTools';
 
 let nextTodoId = 0;
@@ -42,8 +42,9 @@ class Root extends Component {
     // };
 
     render() {
-        // const { store } = this.props;
-        let visibleTodos = getVisibleTodos(this.props.todos, this.props.visibilityFilter)
+        const { store } = this.props;
+        let visibleTodos = getVisibleTodos(this.props.todos, this.props.visibilityFilter);
+        console.log("VT ", visibleTodos);
         return (
             <div>
                 <input ref={node => {this.input = node}}/>
@@ -93,4 +94,4 @@ class Root extends Component {
     }
 }
 
-export default Root;
+export default connect()(Root);

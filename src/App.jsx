@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+
 import {render} from 'react-dom';
 // import {useRouterHistory, hashHistory } from 'react-router';
 import {AppContainer} from 'react-hot-loader';
@@ -17,12 +19,14 @@ const store = createStore(reducer);
 
 const renderr  = () => render(
     <AppContainer>
+        <Provider store={store}>
         <Root
-            store={store}
+            // store={store}
             //{...store.getState()}
-             todos={store.getState().todos}
-             visibilityFilter={store.getState().visibilityFilter}
+            //  todos={store.getState().todos}
+            //  visibilityFilter={store.getState().visibilityFilter}
         />
+        </Provider>
     </AppContainer>, document.getElementById('app')
 );
 
@@ -32,10 +36,13 @@ if (module.hot) {
         // const renderr = () =>
         render(
             <AppContainer>
-                <RootContainer
-                    store={store.getState()}
-                    todos={store.getState().todos}
-                />
+                <Provider store={store}>
+                    <RootContainer
+                        // store = {store}
+                        // store={store.getState()}
+                        // todos={store.getState().todos}
+                    />
+                </Provider>
             </AppContainer>, document.getElementById('app')
         );
     });
