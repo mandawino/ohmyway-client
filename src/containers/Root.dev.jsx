@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-// import DevTools from 'containers/DevTools';
 
-let nextTodoId = 0;
+import { toggleTodo, addTodo } from '../actions/Actions'
+
+// import DevTools from 'containers/DevTools';
 
 class FilterLink extends Component {
     render(){
@@ -42,27 +43,24 @@ class Root extends Component {
     // };
 
     render() {
-        const { store } = this.props;
-        let visibleTodos = getVisibleTodos(this.props.todos, this.props.visibilityFilter);
-        console.log("VT ", visibleTodos);
+        // const { store } = this.props;
+        console.log("todoss", this.props.todos)
+
         return (
             <div>
                 <input ref={node => {this.input = node}}/>
                 <button onClick={ () => {
-                    // if(this.input.value) {
-                        this.props.store.dispatch(
-                            {type: 'ADD_TODO', text: this.input.value, id: nextTodoId++, completed: false});
-                    // }
+                    this.props.addTodo(this.input.value)
                     this.input.value = '';
                 }}>
                     Add todo
                 </button>
                 <ul>
-                    {visibleTodos.map(todo =>
+                    {
+                        this.props.todos.map(todo =>
                         <li key={todo.id} onClick={() =>
                         {
-                            console.log(todo.id);
-                            this.props.store.dispatch({type: 'TOGGLE_TODO', id:todo.id});
+                            this.props.toggleTodo(todo.id)
                         }} style={{
                             textDecoration: todo.completed ? 'line-through': 'none'
                         }}>
@@ -94,4 +92,14 @@ class Root extends Component {
     }
 }
 
-export default connect()(Root);
+const mapStateToProps = (state) => ({
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+});
+
+const mapDispatchToProps = {
+    toggleTodo: toggleTodo,
+    addTodo: addTodo
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

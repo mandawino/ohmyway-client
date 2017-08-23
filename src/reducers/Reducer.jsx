@@ -42,6 +42,8 @@ const todos = (state = [], action) => {
 };
 
 const visibilityFilter = (state = 'SHOW_ALL', action) => {
+    console.log("filterR state : ", state);
+    console.log("filterR action : ", action);
     switch(action.type) {
         case 'SET_VISIBILITY_FILTER':
             return action.filter;
