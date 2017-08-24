@@ -70,11 +70,11 @@ class Root extends Component {
                 <p>
                     Show:
                     {' '}
-                    <FilterLink filter='SHOW_ALL' store={this.props.store} currentFilter={this.props.visibilityFilter}>Show All</FilterLink>
+                    <FilterLink filter='SHOW_ALL'>Show All</FilterLink>
                     {' '}
-                    <FilterLink filter='SHOW_ACTIVE' store={this.props.store} currentFilter={this.props.visibilityFilter}>Show Active</FilterLink>
+                    <FilterLink filter='SHOW_ACTIVE' >Show Active</FilterLink>
                     {' '}
-                    <FilterLink filter='SHOW_COMPLETED' store={this.props.store} currentFilter={this.props.visibilityFilter}>Show Completed</FilterLink>
+                    <FilterLink filter='SHOW_COMPLETED' >Show Completed</FilterLink>
                 </p>
             </div>
         );
@@ -99,7 +99,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     toggleTodo: toggleTodo,
     addTodo: addTodo
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);
