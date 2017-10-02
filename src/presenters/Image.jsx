@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import { Row, Col } from 'reactstrap';
+
 
 class Image extends Component {
     // componentWillMount() {
@@ -16,9 +18,13 @@ class Image extends Component {
     //         })
     // }
     render(){
-        console.log("State Image", this.state)
         const url = SERVER.config.BASE_URL+'/image?path='+this.props.image;
-        return <img src={url}/>
+        return <Row>
+            <Col>
+                <img className="image" src={url}/>
+                {/*height="auto"*/}
+            </Col>
+        </Row>
         // if(this.state && this.state.image){
         //     return <div>
         //         <span>{this.props.image}</span>

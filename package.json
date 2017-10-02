@@ -20,12 +20,12 @@
   "author": "Théo Guérin",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
-    "react-bootstrap": "^0.31.3",
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
-    "react": "^15.5.4",
-    "react-dom": "^15.6.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-transition-group": "^2.2.1",
+    "reactstrap": "^4.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

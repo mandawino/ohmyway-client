@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 // import {connect} from 'react-redux';
 
-import Stream from './Stream';;
+import Stream from './Stream';
+
+import { Container } from 'reactstrap';
 
 import { toggleTodo, addTodo } from '../actions/Actions'
 
@@ -52,10 +54,9 @@ import { toggleTodo, addTodo } from '../actions/Actions'
 class Root extends Component {
     render(){
         return (
-            <div>
-                <span>ROOTDEV</span>
+            <Container> {/*-fluid*/}
                 <Stream></Stream>
-            </div>
+            </Container>
         );
     }
 
