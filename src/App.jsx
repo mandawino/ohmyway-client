@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 
 import {render} from 'react-dom';
 // import {useRouterHistory, hashHistory } from 'react-router';
@@ -8,25 +8,25 @@ import {AppContainer} from 'react-hot-loader';
 
 import Root from 'containers/Root';
 // import configureStore from 'store/configureStore';
-// import Footer from 'components/Footer/Footer';
+// import Footer from 'presenters/Footer/Footer';
 
 // const store = configureStore();
 // const appHistory = syncHistoryWithStore(hashHistory, store);
 
-import { createStore } from 'redux';
-import reducer from 'reducers/Reducer'
-const store = createStore(reducer);
+// import { createStore } from 'redux';
+// import reducer from 'reducers/Reducer'
+// const store = createStore(reducer);
 
 const renderr  = () => render(
     <AppContainer>
-        <Provider store={store}>
+        {/*<Provider store={store}>*/}
         <Root
             // store={store}
             //{...store.getState()}
             //  todos={store.getState().todos}
             //  visibilityFilter={store.getState().visibilityFilter}
         />
-        </Provider>
+        {/*</Provider>*/}
     </AppContainer>, document.getElementById('app')
 );
 
@@ -36,16 +36,16 @@ if (module.hot) {
         // const renderr = () =>
         render(
             <AppContainer>
-                <Provider store={store}>
+                {/*<Provider store={store}>*/}
                     <RootContainer
                         // store = {store}
                         // store={store.getState()}
                         // todos={store.getState().todos}
                     />
-                </Provider>
+                {/*</Provider>*/}
             </AppContainer>, document.getElementById('app')
         );
     });
 }
 renderr();
-store.subscribe(renderr);
+// store.subscribe(renderr);
