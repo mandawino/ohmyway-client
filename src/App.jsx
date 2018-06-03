@@ -17,17 +17,24 @@ import Root from 'containers/Root';
 // import reducer from 'reducers/Reducer'
 // const store = createStore(reducer);
 
+import { BrowserRouter } from 'react-router-dom'
+// import Contact from "presenters/Contact";
+
+
 const renderr  = () => render(
-    <AppContainer>
-        {/*<Provider store={store}>*/}
-        <Root
-            // store={store}
-            //{...store.getState()}
-            //  todos={store.getState().todos}
-            //  visibilityFilter={store.getState().visibilityFilter}
-        />
-        {/*</Provider>*/}
-    </AppContainer>, document.getElementById('app')
+    <BrowserRouter>
+        <AppContainer>
+            {/*<Provider store={store}>*/}
+            <Root
+                // store={store}
+                //{...store.getState()}
+                //  todos={store.getState().todos}
+                //  visibilityFilter={store.getState().visibilityFilter}
+            />
+            {/*</Provider>*/}
+        </AppContainer>
+    </BrowserRouter>
+    , document.getElementById('app')
 );
 
 if (module.hot) {
@@ -35,15 +42,17 @@ if (module.hot) {
         const RootContainer = require('containers/Root').default;
         // const renderr = () =>
         render(
-            <AppContainer>
-                {/*<Provider store={store}>*/}
-                    <RootContainer
-                        // store = {store}
-                        // store={store.getState()}
-                        // todos={store.getState().todos}
-                    />
-                {/*</Provider>*/}
-            </AppContainer>, document.getElementById('app')
+            <BrowserRouter>
+                <AppContainer>
+                    {/*<Provider store={store}>*/}
+                        <RootContainer
+                            // store = {store}
+                            // store={store.getState()}
+                            // todos={store.getState().todos}
+                        />
+                    {/*</Provider>*/}
+                </AppContainer>, document.getElementById('app')
+            </BrowserRouter>
         );
     });
 }

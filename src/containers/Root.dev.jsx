@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import {connect} from 'react-redux';
 
-import Stream from './Stream';
+// import Stream from './Stream';
 
 import { Container } from 'reactstrap';
 
-import { toggleTodo, addTodo } from '../actions/Actions'
+// import { toggleTodo, addTodo } from '../actions/Actions'
+import Header from "./Header";
+import Menu from "./Menu";
+import Main from "./Main";
 
 // import DevTools from 'containers/DevTools';
 
@@ -54,8 +57,10 @@ import { toggleTodo, addTodo } from '../actions/Actions'
 class Root extends Component {
     render(){
         return (
-            <Container> {/*-fluid*/}
-                <Stream></Stream>
+            <Container> {/*fluid={true}*/}
+                <Header/>
+                <Menu/>
+                <Main/>
             </Container>
         );
     }

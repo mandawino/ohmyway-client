@@ -10,7 +10,8 @@ class Stream extends Component {
         const configFetch = {
             method: 'GET'
         };
-        fetch(SERVER.config.BASE_URL+'/images', configFetch)
+        const url = SERVER.config.BASE_URL+'/images';
+        fetch(url, configFetch)
             .then(res => {
                 res.json().then(json => {
                     console.log("json", json);
