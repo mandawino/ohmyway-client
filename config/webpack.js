@@ -5,6 +5,7 @@ var DashboardPlugin = require('webpack-dashboard/plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
@@ -37,7 +38,7 @@ module.exports = {
         ])
     ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.jsx?$/,
             include: path.resolve(__dirname, '../src'),
             exclude: /node_modules/,
