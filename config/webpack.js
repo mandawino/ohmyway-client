@@ -36,6 +36,13 @@ module.exports = {
         new CopyWebpackPlugin([
             { from: 'static' }
         ])
+        // ,
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery',
+        //     jQuery: 'jquery',
+        //     'window.jQuery': 'jquery',
+        //     Popper: ['popper.js', 'default']
+        // })
     ],
     module: {
         rules: [{
@@ -45,8 +52,14 @@ module.exports = {
             loader: 'babel-loader',
             query: {
                 presets: ['es2015', 'stage-2', 'react']
+            }}
+            ,
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
-        }
+
+
             // ,
             // {
             //     test: /\.less$/,

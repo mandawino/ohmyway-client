@@ -21,10 +21,11 @@ class Stream extends Component {
     }
 
     render(){
-        console.log("state Stream", this.state);
+        console.log("Stream", this.state);
         if(this.state && this.state.images){
-            return (<div>
-                {this.state.images.map((image, index) => <Image key={index} image={image}></Image>)}
+            return (<div className="stream">
+                {this.state.images.map((image, index) =>
+                    <Image key={index} image={image}></Image>)}
             </div>)
         } else {
             return (<div>

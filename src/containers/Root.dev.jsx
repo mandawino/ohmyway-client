@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 
 // import Stream from './Stream';
 
-import { Container } from 'reactstrap';
-
 // import { toggleTodo, addTodo } from '../actions/Actions'
 import Header from "./Header";
 import Menu from "./Menu";
@@ -57,11 +55,11 @@ import Main from "./Main";
 class Root extends Component {
     render(){
         return (
-            <Container> {/*fluid={true}*/}
-                <Header/>
+            <div className="wrapper"> {/*fluid={true}*/}
+                {/*<Header/>*/}
                 <Menu/>
                 <Main/>
-            </Container>
+            </div>
         );
     }
 

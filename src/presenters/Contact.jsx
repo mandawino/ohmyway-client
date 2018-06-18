@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import { Button } from 'reactstrap';
+
 
 class Contact extends Component {
     // componentWillMount() {
@@ -17,7 +19,8 @@ class Contact extends Component {
     // }
     render(){
         return <div>
-            <span>Theo Guerin</span>
+            <div>Théo Guérin</div>
+            <div>Marion Boissières</div>
         </div>
         // if(this.state && this.state.image){
         //     return <div>

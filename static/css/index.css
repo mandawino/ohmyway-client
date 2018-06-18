@@ -1,10 +1,44 @@
 /*
 Custom CSS for ohmyway
-https://startbootstrap.com/template-categories/all/
-https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio
 */
 
+/*.wrapper {*/
+    /*display: grid;*/
+    /*grid-template-columns: 1fr;*/
+    /*width: 100%;*/
+/*}*/
+
+.wrapper {
+    /*display: flex;*/
+}
+
+
+.stream {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 2em;
+    z-index:1;
+    /*grid-auto-columns: minmax(auto, 200px);*/
+    /*grid-column-gap: 30px;*/
+}
+
 .image {
-    width: 100%;
-    padding: 0.7em;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    /*grid-column-start: 1;*/
+    /*grid-column-end: 2;*/
+}
+
+@media only screen and (max-width: 800px),
+        only screen and (max-device-width: 800px) {
+    .image {
+        width: 100%;
+    }
+}
+@media (min-width: 1300px),
+        only screen and (min-device-width: 1300px) {
+    .image {
+        width: 60%;
+    }
 }

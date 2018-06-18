@@ -6,8 +6,8 @@ import {Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
     render() {
-        return <div>
-            Main
+        return <div className="main">
+            {/*Main*/}
             <Switch>
                 <Route exact path='/' component={Stream}/>
                 <Route path='/stream' component={Stream}/>
