@@ -8,36 +8,38 @@ Custom CSS for ohmyway
     /*width: 100%;*/
 /*}*/
 
-.wrapper {
+.wrapper
+{
     /*display: flex;*/
 }
 
 
-.stream {
+.stream
+{
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 2em;
-    z-index:1;
-    /*grid-auto-columns: minmax(auto, 200px);*/
-    /*grid-column-gap: 30px;*/
 }
 
-.image {
+.image
+{
     width: 80%;
-    text-align: center;
     margin: 0 auto;
+    padding: 0 0.5em;
     /*grid-column-start: 1;*/
     /*grid-column-end: 2;*/
 }
 
-@media only screen and (max-width: 800px),
-        only screen and (max-device-width: 800px) {
+@media (max-width: 600px), (max-device-width: 600px)
+{
     .image {
         width: 100%;
     }
 }
-@media (min-width: 1300px),
-        only screen and (min-device-width: 1300px) {
+
+@media (min-width: 1300px)
+        /*, only screen and (min-device-width: 1300px) */
+{
     .image {
         width: 60%;
     }

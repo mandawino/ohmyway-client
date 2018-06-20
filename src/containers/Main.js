@@ -9,9 +9,8 @@ class Main extends Component {
         return <div className="main">
             {/*Main*/}
             <Switch>
-                <Route exact path='/' component={Stream}/>
-                <Route path='/stream' component={Stream}/>
-                <Route path="/contact" component={Contact}/>
+                <Route exact path="/contact" component={Contact}/>
+                <Route path='/:country?' component={Stream}/>
             </Switch>
         </div>
 
