@@ -7,7 +7,6 @@ class Contact extends Component {
 
     render(){
         return <div>
-            <div>Marion Boissières</div>
             <div>Théo Guérin</div>
         </div>
     }
