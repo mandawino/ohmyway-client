@@ -26,6 +26,7 @@ Custom CSS for ohmyway
     width: 80%;
     margin: 0 auto;
     padding: 0 0.5em;
+    image-orientation: from-image;
     /*grid-column-start: 1;*/
     /*grid-column-end: 2;*/
 }
