@@ -51,6 +51,12 @@ class Menu extends Component {
                                 <NavLink tag={Link} to="/vietnam">Vietnam</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink tag={Link} to="/philippines">Philippines</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to="/malaisie">Malaisie</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink tag={Link} to="/contact">Contact</NavLink>
                             </NavItem>
 
