@@ -6,12 +6,15 @@ import {Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
     render() {
+        const {store} = this.props;
+
         return <div className="main">
             {/*Main*/}
-            <Switch>
+            {/* <Switch>
                 <Route exact path="/contact" component={Contact}/>
                 <Route path='/:country?' component={Stream}/>
-            </Switch>
+            </Switch> */}
+            <Stream store={store}/>
         </div>
 
     }

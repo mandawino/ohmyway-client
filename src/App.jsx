@@ -8,16 +8,18 @@ import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 // import { syncHistoryWithStore } from 'react-router-redux';
 
-import Root from 'containers/Root';
+// TODO import Root from 'containers/Root';
+import Root from 'containers/Root.dev';
 // import configureStore from 'store/configureStore';
 // import Footer from 'presenters/Footer/Footer';
 
 // const store = configureStore();
 // const appHistory = syncHistoryWithStore(hashHistory, store);
 
-// import { createStore } from 'redux';
-// import reducer from 'reducers/Reducer'
-// const store = createStore(reducer);
+import imagesReducer from 'reducers/Reducer'
+
+import { createStore } from 'redux';
+const store = createStore(imagesReducer);
 
 import { BrowserRouter } from 'react-router-dom'
 // import Contact from "presenters/Contact";
@@ -27,8 +29,8 @@ const renderr  = () => render(
     <BrowserRouter>
         <AppContainer>
             {/*<Provider store={store}>*/}
-            <Root
-                // store={store}
+            <Root 
+                store={store}
                 //{...store.getState()}
                 //  todos={store.getState().todos}
                 //  visibilityFilter={store.getState().visibilityFilter}
@@ -46,17 +48,16 @@ if (module.hot) {
         render(
             <BrowserRouter>
                 <AppContainer>
-                    {/*<Provider store={store}>*/}
+                    <Provider store={store}>
                         <RootContainer
-                            // store = {store}
                             // store={store.getState()}
                             // todos={store.getState().todos}
                         />
-                    {/*</Provider>*/}
+                    </Provider>
                 </AppContainer>, document.getElementById('app')
             </BrowserRouter>
         );
     });
 }
 renderr();
-// store.subscribe(renderr);
+store.subscribe(renderr);

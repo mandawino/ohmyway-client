@@ -6,21 +6,50 @@ class Stream extends Component {
         super();
     }
 
+
+    
     componentDidMount() {
-        this.getImages(this.props.match.params.country);
+        const {store}= this.props;
+        console.log("store present ?", store);
+        // Call images
+        this.getImages(store);
+        // this.getImages(this.props.match.params.country);
     }
 
-    componentDidUpdate(prevProps){
-        if(this.props.match.params.country !== prevProps.match.params.country){
-            console.log("NEW COUNTRY ", this.props.match.params.country)
-            this.getImages(this.props.match.params.country)
-        }
+    getImages(store){
+        const configFetch = {
+            method: 'GET'
+        };
+        const url = SERVER.config.BASE_URL+'/images/';
+        console.log("Call ", url);
+        fetch(url, configFetch)
+            .then(res => {
+                res.json().then(json => {
+                    console.log("json", json);
+                    store.dispatch({
+                        type: 'SET_IMAGES',
+                        images: json
+                    })
+                    // this.setState(() => ({images: json}));
+                });
+            })
+
     }
+
+    // componentDidUpdate(prevProps){
+    //     // Compare countryFilter to rerender ?
+    //     if(this.props.match.params.country !== prevProps.match.params.country){
+    //         console.log("NEW COUNTRY ", this.props.match.params.country)
+    //         this.getImages(this.props.match.params.country)
+    //     }
+    // }
 
     render(){
-        if(this.state && this.state.images){
+        const {store} = this.props;
+        console.log("STOOORE in Stream", store.getState());
+        if(store && store.getState()){
             return (<div className="stream">
-                {this.state.images.map((image, index) =>
+                {store.getState().map((image, index) =>
                     <Image key={index} image={image}></Image>)}
             </div>)
         } else {
@@ -30,21 +59,7 @@ class Stream extends Component {
         }
     }
 
-    getImages(country){
-        const configFetch = {
-            method: 'GET'
-        };
-        const url = country ? SERVER.config.BASE_URL+'/images/'+country : SERVER.config.BASE_URL+'/images/';
-        console.log("Call ", url);
-        fetch(url, configFetch)
-            .then(res => {
-                res.json().then(json => {
-                    console.log("json", json);
-                    this.setState(() => ({images: json}));
-                });
-            })
 
-    }
 }
 
 export default Stream;

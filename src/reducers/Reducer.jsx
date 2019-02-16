@@ -10,6 +10,20 @@ devdependencies :
  "redux-devtools-log-monitor": "^1.3.0",
  */
 
+// Images reducer
+ const imagesReducer = (state = [], action) => {
+     switch (action.type){
+         case 'SET_IMAGES':
+            console.log('NEW IMAGES IN REDUCER', action.images);
+            return action.images
+        default:
+            return state
+     }
+ }
+ export default imagesReducer;
+
+
+
 // import {combineReducers} from 'redux'
 //
 // const todo = (state = [], action) => {

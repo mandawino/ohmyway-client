@@ -28,7 +28,9 @@
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2",
     "reactstrap": "^6.1.0",
-    "style-loader": "^0.21.0"
+    "style-loader": "^0.21.0",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

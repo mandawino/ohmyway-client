@@ -54,11 +54,13 @@ import Main from "./Main";
 
 class Root extends Component {
     render(){
+        const {store} = this.props;
         return (
+
             <div className="wrapper"> {/*fluid={true}*/}
                 {/*<Header/>*/}
-                <Menu/>
-                <Main/>
+                {/* <Menu store={store}/> */}
+                <Main store={store}/>
             </div>
         );
     }
