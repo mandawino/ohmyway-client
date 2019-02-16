@@ -1,7 +1,7 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import {render} from 'react-dom';
 // import {useRouterHistory, hashHistory } from 'react-router';
@@ -25,17 +25,16 @@ import { BrowserRouter } from 'react-router-dom'
 // import Contact from "presenters/Contact";
 
 
-const renderr  = () => render(
+render(
     <BrowserRouter>
         <AppContainer>
-            {/*<Provider store={store}>*/}
-            <Root 
-                store={store}
-                //{...store.getState()}
-                //  todos={store.getState().todos}
-                //  visibilityFilter={store.getState().visibilityFilter}
-            />
-            {/*</Provider>*/}
+            <Provider store={store}>
+                <Root 
+                    //{...store.getState()}
+                    //  todos={store.getState().todos}
+                    //  visibilityFilter={store.getState().visibilityFilter}
+                />
+            </Provider>
         </AppContainer>
     </BrowserRouter>
     , document.getElementById('app')
@@ -44,7 +43,7 @@ const renderr  = () => render(
 if (module.hot) {
     module.hot.accept('./containers/Root', () => {
         const RootContainer = require('containers/Root').default;
-        // const renderr = () =>
+        // const render = () =>
         render(
             <BrowserRouter>
                 <AppContainer>
@@ -59,5 +58,3 @@ if (module.hot) {
         );
     });
 }
-renderr();
-store.subscribe(renderr);

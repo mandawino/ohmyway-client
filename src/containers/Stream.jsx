@@ -1,21 +1,13 @@
 import React, {Component} from 'react';
 import Image from '../presenters/Image.jsx';
+import { connect } from 'react-redux'
 
 class Stream extends Component {
     constructor() {
         super();
     }
 
-
-    
-    componentDidMount() {
-        const {store}= this.props;
-        // Call images
-        this.getImages(store);
-        // this.getImages(this.props.match.params.country);
-    }
-
-    getImages(store){
+    getImages(dispatch){
         const configFetch = {
             method: 'GET'
         };
@@ -25,18 +17,28 @@ class Stream extends Component {
             .then(res => {
                 res.json().then(json => {
                     console.log("json", json);
-                    store.dispatch({
+                    dispatch({
                         type: 'SET_IMAGES',
                         images: json
                     })
-                    // this.setState(() => ({images: json}));
                 });
             })
     }
 
-    getVisibleImages(store, country){
-        const visibleImages = (store.getState().images || {})[country] || {};
-        console.log('visibleImagessssss', visibleImages)
+    componentDidMount() {
+        const {dispatch} = this.props;
+        this.getImages(dispatch);
+
+        // const {store}= this.props;
+        // Call images
+        // this.getImages(this.props.match.params.country);
+    }
+
+
+
+    getVisibleImages(images, country){
+        // All images if no country defined
+        const visibleImages = images[country] || images; 
         return visibleImages;
     }
 
@@ -49,9 +51,10 @@ class Stream extends Component {
     // }
 
     render(){
-        const {store} = this.props;
-        if(store && store.getState() && store.getState().images){
-            const visibleImages = this.getVisibleImages(store, 'thailande');
+        const {images} = this.props;
+        console.log("ISITTHEPROPS ?", images)
+        if(images){
+            const visibleImages = this.getVisibleImages(images, 'thailande');
             let imagesUrl = [];
             for(const location in visibleImages){
                 for(const image in visibleImages[location]){
@@ -70,9 +73,16 @@ class Stream extends Component {
             </div>)
         }
     }
-
-
-
 }
 
-export default Stream;
+const mapStateToProps = (state) => {
+    return {
+        images : state.images
+        // : this.getVisibleImages(
+        //     state.images,
+        //     state.country
+        // )
+    }
+}
+
+export default connect(mapStateToProps)(Stream);
