@@ -11,11 +11,12 @@ devdependencies :
  */
 
 // Images reducer
- const imagesReducer = (state = [], action) => {
+ const imagesReducer = (state = {'country':''}, action) => {
      switch (action.type){
-         case 'SET_IMAGES':
-            console.log('NEW IMAGES IN REDUCER', action.images);
-            return action.images
+        case 'SET_IMAGES':
+            return {...state, 'images': action.images}
+        // case 'SET_COUNTRY':
+            // return {...state, 'country': action.country}
         default:
             return state
      }

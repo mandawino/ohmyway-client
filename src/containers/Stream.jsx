@@ -10,7 +10,6 @@ class Stream extends Component {
     
     componentDidMount() {
         const {store}= this.props;
-        console.log("store present ?", store);
         // Call images
         this.getImages(store);
         // this.getImages(this.props.match.params.country);
@@ -20,7 +19,7 @@ class Stream extends Component {
         const configFetch = {
             method: 'GET'
         };
-        const url = SERVER.config.BASE_URL+'/images/';
+        const url = SERVER.config.BASE_URL+'/images';
         console.log("Call ", url);
         fetch(url, configFetch)
             .then(res => {
@@ -33,7 +32,12 @@ class Stream extends Component {
                     // this.setState(() => ({images: json}));
                 });
             })
+    }
 
+    getVisibleImages(store, country){
+        const visibleImages = (store.getState().images || {})[country] || {};
+        console.log('visibleImagessssss', visibleImages)
+        return visibleImages;
     }
 
     // componentDidUpdate(prevProps){
@@ -46,11 +50,19 @@ class Stream extends Component {
 
     render(){
         const {store} = this.props;
-        console.log("STOOORE in Stream", store.getState());
-        if(store && store.getState()){
+        if(store && store.getState() && store.getState().images){
+            const visibleImages = this.getVisibleImages(store, 'thailande');
+            let imagesUrl = [];
+            for(const location in visibleImages){
+                for(const image in visibleImages[location]){
+                    const imageUrl = visibleImages[location][image];
+                    imagesUrl.push(imageUrl)
+                }
+            }
+            console.log('imagesUrl', imagesUrl);
             return (<div className="stream">
-                {store.getState().map((image, index) =>
-                    <Image key={index} image={image}></Image>)}
+                {imagesUrl.map((url, index) =>
+                    <Image key={index} image={url}></Image>)}
             </div>)
         } else {
             return (<div>
@@ -58,6 +70,7 @@ class Stream extends Component {
             </div>)
         }
     }
+
 
 
 }
