@@ -7,12 +7,10 @@ import {Switch, Route} from 'react-router-dom';
 class Main extends Component {
     render() {
         return <div className="main">
-            {/*Main*/}
             <Switch>
                 <Route exact path="/contact" component={Contact}/>
                 <Route path='/:country?' component={Stream}/>
             </Switch>
-            {/* <Stream/> */}
         </div>
 
     }

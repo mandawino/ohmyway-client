@@ -3,6 +3,8 @@ import Image from '../presenters/Image.jsx';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+import {Spinner} from 'reactstrap'
+
 class Stream extends Component {
     constructor() {
         super();
@@ -61,8 +63,6 @@ class Stream extends Component {
         return imagesUrl;
     }
 
-
-
     render(){
         const {images} = this.props;
         if(images){
@@ -73,8 +73,8 @@ class Stream extends Component {
                     <Image key={index} image={url}></Image>)}
             </div>)
         } else {
-            return (<div>
-                <span>Stream loading</span>
+            return (<div className="stream">
+                <Spinner className= "spinner" color="primary"/>
             </div>)
         }
     }
