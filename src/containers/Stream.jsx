@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Image from '../presenters/Image.jsx';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class Stream extends Component {
     constructor() {
@@ -12,7 +13,6 @@ class Stream extends Component {
             method: 'GET'
         };
         const url = SERVER.config.BASE_URL+'/images';
-        console.log("Call ", url);
         fetch(url, configFetch)
             .then(res => {
                 res.json().then(json => {
@@ -28,43 +28,48 @@ class Stream extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         this.getImages(dispatch);
-
-        // const {store}= this.props;
-        // Call images
-        // this.getImages(this.props.match.params.country);
     }
 
-
+    shouldComponentUpdate(nextProps){
+        // First render (no images) or new country
+        return !this.props.images || 
+            nextProps.match.params.country !== this.props.match.params.country
+    }
 
     getVisibleImages(images, country){
-        // All images if no country defined
-        const visibleImages = images[country] || images; 
-        return visibleImages;
+        if(!!country){
+            return this.getAllImagesFromCountry(images, country)
+        } else {
+            // All images if no country defined 
+            let visibleImages = []
+            for(const country in images){
+                visibleImages = visibleImages
+                    .concat(this.getAllImagesFromCountry(images, country))
+            }
+            return visibleImages;
+        }
     }
 
-    // componentDidUpdate(prevProps){
-    //     // Compare countryFilter to rerender ?
-    //     if(this.props.match.params.country !== prevProps.match.params.country){
-    //         console.log("NEW COUNTRY ", this.props.match.params.country)
-    //         this.getImages(this.props.match.params.country)
-    //     }
-    // }
+    getAllImagesFromCountry(images, country){
+        let imagesUrl = [];
+        for(const location in images[country]){
+            for(const image in images[country][location]){
+                const imageUrl = images[country][location][image];
+                imagesUrl.push(imageUrl)
+            }
+        }
+        return imagesUrl;
+    }
+
+
 
     render(){
         const {images} = this.props;
-        console.log("ISITTHEPROPS ?", images)
         if(images){
-            const visibleImages = this.getVisibleImages(images, 'thailande');
-            let imagesUrl = [];
-            for(const location in visibleImages){
-                for(const image in visibleImages[location]){
-                    const imageUrl = visibleImages[location][image];
-                    imagesUrl.push(imageUrl)
-                }
-            }
-            console.log('imagesUrl', imagesUrl);
+            const country = this.props.match.params.country || null;
+            const visibleImages = this.getVisibleImages(images, country);
             return (<div className="stream">
-                {imagesUrl.map((url, index) =>
+                {visibleImages.map((url, index) =>
                     <Image key={index} image={url}></Image>)}
             </div>)
         } else {
@@ -78,11 +83,7 @@ class Stream extends Component {
 const mapStateToProps = (state) => {
     return {
         images : state.images
-        // : this.getVisibleImages(
-        //     state.images,
-        //     state.country
-        // )
     }
 }
 
-export default connect(mapStateToProps)(Stream);
+export default withRouter(connect(mapStateToProps)(Stream));

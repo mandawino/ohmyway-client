@@ -13,13 +13,11 @@ import Main from "./Main";
 
 class Root extends Component {
     render(){
-        const {store} = this.props;
+        // const {store} = this.props;
         return (
-
             <div className="wrapper"> {/*fluid={true}*/}
-                {/*<Header/>*/}
-                {/* <Menu store={store}/> */}
-                <Main store={store}/>
+                <Header/>
+                <Main/>
             </div>
         );
     }

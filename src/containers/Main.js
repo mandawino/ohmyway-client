@@ -8,11 +8,11 @@ class Main extends Component {
     render() {
         return <div className="main">
             {/*Main*/}
-            {/* <Switch>
+            <Switch>
                 <Route exact path="/contact" component={Contact}/>
                 <Route path='/:country?' component={Stream}/>
-            </Switch> */}
-            <Stream/>
+            </Switch>
+            {/* <Stream/> */}
         </div>
 
     }
