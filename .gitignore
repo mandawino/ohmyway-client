@@ -6,7 +6,6 @@ npm-*.log*
 build
 static/js/bundle.js
 static/js/bundle.js.map
-static/js/config.js
 static/version.txt
 results.xunit
 .DS_Store
