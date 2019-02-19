@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Image from '../presenters/Image.jsx';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -78,6 +79,10 @@ class Stream extends Component {
             </div>)
         }
     }
+}
+
+Stream.propTypes = {
+    images: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

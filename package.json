@@ -24,6 +24,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "core-js": "^2.6.5",
     "css-loader": "^0.28.11",
+    "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-redux": "^5.0.5",
