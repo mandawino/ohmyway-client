@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Image from '../presenters/Image.jsx';
+import Image from '../presenters/Image';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 

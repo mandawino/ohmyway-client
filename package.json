@@ -2,7 +2,7 @@
   "name": "ohmyway-client",
   "version": "0.1.0",
   "description": "ohmyway frontend",
-  "main": "App.jsx",
+  "main": "App.js",
   "directories": {
     "test": "test"
   },
