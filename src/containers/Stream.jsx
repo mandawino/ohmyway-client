@@ -29,15 +29,21 @@ class Stream extends Component {
     }
 
     componentDidMount() {
-        const {dispatch} = this.props;
+        const {dispatch, images} = this.props;
+        console.log('componentDidMount', images)
         this.getImages(dispatch);
     }
 
-    shouldComponentUpdate(nextProps){
-        // First render (no images) or new country
-        return !this.props.images || 
-            nextProps.match.params.country !== this.props.match.params.country
+    componentDidUpdate(){
+        const {images} = this.props;
+        console.log('componentDidUpdate', images)
     }
+
+    // shouldComponentUpdate(nextProps){
+    //     // First render (no images) or new country
+    //     return !this.props.images || 
+    //         nextProps.match.params.country !== this.props.match.params.country
+    // }
 
     getVisibleImages(images, country){
         if(!!country){
@@ -66,6 +72,7 @@ class Stream extends Component {
 
     render(){
         const {images} = this.props;
+        console.log('render', images)
         if(images){
             const country = this.props.match.params.country || null;
             const visibleImages = this.getVisibleImages(images, country);
@@ -86,6 +93,7 @@ Stream.propTypes = {
 }
 
 const mapStateToProps = (state) => {
+    console.log('mapStateToProps', state)
     return {
         images : state.images
     }
