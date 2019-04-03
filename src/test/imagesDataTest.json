@@ -1,0 +1,67 @@
+{
+  "cambodge": {
+    "kampot-kep": {
+      "IMG_5992.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/cambodge/kampot-kep/IMG_5992.JPG"
+    }
+  },
+  "laos": {
+    "don-det": {
+      "IMG_6579.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6579.JPG",
+      "IMG_6585.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6585.JPG",
+      "IMG_6599.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6599.JPG",
+      "IMG_6643.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6643.JPG",
+      "IMG_6648.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6648.JPG",
+      "IMG_6665.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/laos/don-det/IMG_6665.JPG"
+    }
+  },
+  "malaisie": {
+    "kuala-lumpur": {
+      "IMG_8179.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/malaisie/kuala-lumpur/IMG_8179.JPG",
+      "IMG_8198.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/malaisie/kuala-lumpur/IMG_8198.JPG",
+      "IMG_8222.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/malaisie/kuala-lumpur/IMG_8222.JPG",
+      "IMG_8257.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/malaisie/kuala-lumpur/IMG_8257.JPG"
+    }
+  },
+  "myanmar": {
+    "hpa-an": {
+      "IMG_4624.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4624.JPG",
+      "IMG_4629.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4629.JPG",
+      "IMG_4665.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4665.JPG",
+      "IMG_4679.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4679.JPG",
+      "IMG_4682.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4682.JPG",
+      "IMG_4684.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/myanmar/hpa-an/IMG_4684.JPG"
+    }
+  },
+  "philippines": {
+    "banaue-batad": {
+      "IMG_7864.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7864.JPG",
+      "IMG_7870.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7870.JPG",
+      "IMG_7890.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7890.JPG",
+      "IMG_7898.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7898.JPG",
+      "IMG_7917.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7917.JPG",
+      "IMG_7966.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7966.JPG",
+      "IMG_7972.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7972.JPG",
+      "IMG_7990.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_7990.JPG",
+      "IMG_8004.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_8004.JPG",
+      "IMG_8052.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_8052.JPG",
+      "IMG_8082.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/philippines/banaue-batad/IMG_8082.JPG"
+    }
+  },
+  "thailande": {
+    "bangkok": {
+      "IMG_2457.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/thailande/bangkok/IMG_2457.JPG",
+      "IMG_2594.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/thailande/bangkok/IMG_2594.JPG",
+      "IMG_2821.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/thailande/bangkok/IMG_2821.JPG",
+      "IMG_2849.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/thailande/bangkok/IMG_2849.JPG"
+    }
+  },
+  "vietnam": {
+    "sapa": {
+      "IMG_6951.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/vietnam/sapa/IMG_6951.JPG",
+      "IMG_6988.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/vietnam/sapa/IMG_6988.JPG",
+      "IMG_7005.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/vietnam/sapa/IMG_7005.JPG",
+      "IMG_7014.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/vietnam/sapa/IMG_7014.JPG",
+      "IMG_7035.JPG": "/Users/theo/Documents/workspace/ohmyway/ohmyway-server/images/vietnam/sapa/IMG_7035.JPG"
+    }
+  }
+}

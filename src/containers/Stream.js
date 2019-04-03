@@ -7,10 +7,6 @@ import { withRouter } from 'react-router-dom'
 import {Spinner} from 'reactstrap'
 
 class Stream extends Component {
-    constructor() {
-        super();
-    }
-
     getImages(dispatch){
         const configFetch = {
             method: 'GET'
@@ -18,32 +14,35 @@ class Stream extends Component {
         const url = SERVER.config.BASE_URL+'/images';
         fetch(url, configFetch)
             .then(res => {
-                res.json().then(json => {
-                    console.log("json", json);
-                    dispatch({
-                        type: 'SET_IMAGES',
-                        images: json
-                    })
-                });
+                if(res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error('Fetch to Nasa failed');
+                }
+            }).then(json => {
+                console.log("json", json);
+                dispatch({
+                    type: 'SET_IMAGES',
+                    images: json
+                })
             })
+            .catch(error => console.error(error));
     }
 
     componentDidMount() {
-        const {dispatch, images} = this.props;
-        console.log('componentDidMount', images)
+        const {dispatch} = this.props;
         this.getImages(dispatch);
     }
 
     componentDidUpdate(){
         const {images} = this.props;
-        console.log('componentDidUpdate', images)
     }
 
-    // shouldComponentUpdate(nextProps){
-    //     // First render (no images) or new country
-    //     return !this.props.images || 
-    //         nextProps.match.params.country !== this.props.match.params.country
-    // }
+    shouldComponentUpdate(nextProps){
+        // First render (no images) or new country
+        return !this.props.images || 
+            nextProps.match.params.country !== this.props.match.params.country
+    }
 
     getVisibleImages(images, country){
         if(!!country){
@@ -72,7 +71,6 @@ class Stream extends Component {
 
     render(){
         const {images} = this.props;
-        console.log('render', images)
         if(images){
             const country = this.props.match.params.country || null;
             const visibleImages = this.getVisibleImages(images, country);
@@ -93,10 +91,9 @@ Stream.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps', state)
     return {
         images : state.images
     }
 }
-
+export { Stream }
 export default withRouter(connect(mapStateToProps)(Stream));

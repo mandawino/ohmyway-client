@@ -1,8 +1,4 @@
-import {combineReducers} from 'redux'
-import {connectRouter} from 'connected-react-router'
-
-const Reducer = (state = {}, action) => {
-    console.log('reducer', state, action)
+const reducer = (state = {}, action) => {
     switch (action.type){
         case 'SET_IMAGES':
             return {...state, 'images': action.images}
@@ -11,8 +7,4 @@ const Reducer = (state = {}, action) => {
     }
 }
 
-export default Reducer;
-// export default (history) => combineReducers({
-//     router: connectRouter(history),
-//     Reducer
-// });
+export default reducer;

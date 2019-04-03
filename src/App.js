@@ -8,17 +8,17 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import { Provider } from 'react-redux';
 
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 
 import Root from 'containers/Root';
-import reducer from 'reducers/Reducer'
+import reducer from 'reducers/reducer'
 
 function configureStore() {
   const store = createStore(reducer);
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers/Reducer', () => {
-      const nextRootReducer = require('./reducers/Reducer');
+    module.hot.accept('./reducers/reducer', () => {
+      const nextRootReducer = require('./reducers/reducer');
       store.replaceReducer(nextRootReducer);
     });
   }
