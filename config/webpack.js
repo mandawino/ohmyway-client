@@ -1,10 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+let path = require('path');
+let webpack = require('webpack');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -37,10 +33,6 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     plugins: [
-        // new DashboardPlugin(),
-        // new webpack.LoaderOptionsPlugin({
-        //     debug: true
-        // }),
         new CopyWebpackPlugin([
             { from: 'static' }
         ]),

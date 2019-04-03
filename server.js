@@ -1,6 +1,6 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./config/webpack');
+let webpack = require('webpack');
+let WebpackDevServer = require('webpack-dev-server');
+let config = require('./config/webpack');
 
 const port = 3000;
 
