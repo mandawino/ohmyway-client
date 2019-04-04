@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import {Spinner} from 'reactstrap'
 
 class Stream extends Component {
-    getImages(dispatch){
+    getImagesFromServer(dispatch){
         const configFetch = {
             method: 'GET'
         };
@@ -31,42 +31,32 @@ class Stream extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        this.getImages(dispatch);
-    }
-
-    componentDidUpdate(){
-        const {images} = this.props;
+        this.getImagesFromServer(dispatch);
     }
 
     shouldComponentUpdate(nextProps){
-        // First render (no images) or new country
+        // First render (no image) or new country
         return !this.props.images || 
             nextProps.match.params.country !== this.props.match.params.country
     }
 
-    getVisibleImages(images, country){
-        if(!!country){
-            return this.getAllImagesFromCountry(images, country)
-        } else {
-            // All images if no country defined 
-            let visibleImages = []
-            for(const country in images){
-                visibleImages = visibleImages
-                    .concat(this.getAllImagesFromCountry(images, country))
+    getImages(images, initial = []){
+        return Object.keys(images).reduce((result, key) => {
+            if(typeof images[key] === 'string'){
+                return [...result, images[key]]
+            } else if (typeof images[key] === 'object') {
+                return this.getImages(images[key], result)
+            } else {
+                throw new Error("Object can only be made up of objects and strings")
             }
-            return visibleImages;
-        }
+          }, initial)
     }
 
-    getAllImagesFromCountry(images, country){
-        let imagesUrl = [];
-        for(const location in images[country]){
-            for(const image in images[country][location]){
-                const imageUrl = images[country][location][image];
-                imagesUrl.push(imageUrl)
-            }
-        }
-        return imagesUrl;
+    getVisibleImages(images, country){
+        // All images if no country defined 
+        return !!country
+            ? this.getImages(images[country])
+            : this.getImages(images)
     }
 
     render(){
