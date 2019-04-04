@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stream } from '../../containers/Stream'
+import ConnectedStream, { Stream } from '../../containers/Stream'
 import { shallow, mount } from 'enzyme'
 import imagesData from '../imagesDataTest.json'
 // import toJson from 'enzyme-to-json'

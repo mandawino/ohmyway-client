@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 import {Spinner} from 'reactstrap'
 
-class Stream extends Component {
+export class Stream extends Component {
     getImagesFromServer(dispatch){
         const configFetch = {
             method: 'GET'
@@ -58,7 +58,7 @@ class Stream extends Component {
             ? this.getImages(images[country])
             : this.getImages(images)
     }
-
+ 
     render(){
         const {images} = this.props;
         if(images){
@@ -85,5 +85,4 @@ const mapStateToProps = (state) => {
         images : state.images
     }
 }
-export { Stream }
 export default withRouter(connect(mapStateToProps)(Stream));
