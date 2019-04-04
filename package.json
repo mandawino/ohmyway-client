@@ -44,12 +44,14 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-parameters",
       "react-hot-loader/babel"
     ]
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-parameters": "^7.4.3",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
