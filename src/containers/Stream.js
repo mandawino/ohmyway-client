@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import Image from '../presenters/Image';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { areArraysEqual } from '../utils/util'
+import { getObjectValues, areArraysEqual, countObjectValues } from '../utils/utils'
 import {Spinner} from 'reactstrap'
+import { getImagesStarted, getImagesSuccess, getImagesFailure, getImagesEnded } from '../actions/actionCreators'
 
 export class Stream extends Component {
 
     getImagesFromServer(dispatch){
-        dispatch({
-            type: 'GET_IMAGES_STARTED',
-        })
+        dispatch(getImagesStarted())
         const configFetch = {
             method: 'GET'
         };
@@ -21,27 +20,17 @@ export class Stream extends Component {
                 if(res.ok) {
                     return res.json();
                 } else {
-                    throw new Error('Fetch to get images failed');
+                    throw new Error('Unable to get images from server');
                 }
             }).then(json => {
-                console.log('Get images: ', json);
-                dispatch({
-                    type: 'GET_IMAGES_SUCCESS',
-                    images: json
-                })
+                console.log('Fetch get images: ', json);
+                dispatch(getImagesSuccess(json))
             })
             .catch(error => {
                 console.error(error)
-                dispatch({
-                    type: 'GET_IMAGES_FAILURE',
-                    error: error
-                })
+                dispatch(getImagesFailure(error))
             })
-            .finally( () => {
-                dispatch({
-                    type: 'GET_IMAGES_ENDED',
-                })
-            });
+            .finally(() => dispatch(getImagesEnded()));
     }
 
     componentDidMount() {
@@ -74,33 +63,23 @@ export class Stream extends Component {
     }
 }
 
-const getImages = (images, initial = []) => {
-    return Object.keys(images).reduce((result, key) => {
-        if(typeof images[key] === 'string'){
-            return [...result, images[key]]
-        } else if (typeof images[key] === 'object') {
-            return getImages(images[key], result)
-        } else {
-            throw new Error("Object can only be made up of objects and strings")
-        }
-      }, initial)
-}
-
-const getVisibleImages = (images, country) => {
+const getImages = (images, country) => {
     // All images if no country defined 
     if(images && Object.keys(images).length){
-        return images && !!country
-            ? getImages(images[country])
-            : getImages(images)
+        return !!country
+            ? getObjectValues(images[country])
+            : getObjectValues(images)
     } else {
         return []
     }
-
 }
 
 const mapStateToProps = (state, props) => {
     const {images} = state;
-    const visibleImages = getVisibleImages(images.data, props.match.params.country);
+    const visibleImages = getImages(images.data, props.match.params.country);
+    console.log('mapStateToProps', {
+        ...images, data: visibleImages
+    })
     return {
         ...images, data: visibleImages
     }

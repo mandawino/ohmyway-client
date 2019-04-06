@@ -1,9 +1,11 @@
 import React from 'react'
 import ConnectedStream, { Stream } from '../../containers/Stream'
 import { shallow, mount } from 'enzyme'
-import imagesData from '../imagesDataTest.json'
+import propsStreamSuccess from '../data/propsStreamSuccess.json'
+import propsStreamSuccessThailand from '../data/propsStreamSuccessThailand.json'
+import dataFetchGetImages from '../data/dataFetchGetImages.json'
 // import toJson from 'enzyme-to-json'
-
+import { countObjectValues, getObjectValues } from '../../utils/utils'
 
 function countImages(images, initialCount = 0){
   return Object.keys(images).reduce((result, key) => {
@@ -18,28 +20,48 @@ function countImages(images, initialCount = 0){
 }
 
 describe('<Stream />', () => {
+  const defaultImagesState = {
+    data: null,
+    loading: false,
+    error: null
+  }
+
   it('Display all images', () => {
-    const props = {
-      images: imagesData,
-    }
+    const props = propsStreamSuccess
     const params = {
       match: {params: {country: undefined}}
     }
  
-    const wrapper = shallow(<Stream {...props} {...params} />)
-    // console.log(wrapper.debug())
-    expect(wrapper.find('Image').length).toBe(countImages(imagesData));
+    const wrapper = shallow(<Stream {...props} {...params} />, { disableLifecycleMethods: true })
+    expect(wrapper.find('Image').length).toBe(countObjectValues(dataFetchGetImages));
   })
 
   it('Display only thailand images', () => {
-    const props = {
-      images: imagesData,
-    }
+    const props = propsStreamSuccessThailand;
     const params = {
       match: {params: {country: 'thailande'}}
     }
  
-    const wrapper = shallow(<Stream {...props} {...params} />)
-    expect(wrapper.find('Image').length).toBe(countImages(imagesData.thailande));
+    const wrapper = shallow(<Stream {...props} {...params} />, { disableLifecycleMethods: true })
+    expect(wrapper.find('Image').length).toBe(countObjectValues(dataFetchGetImages.thailande));
+  })
+
+  it('Display loading', () => {
+    const props = {
+      ...defaultImagesState,
+      loading: true
+    }
+    const wrapper = shallow(<Stream {...props} />, { disableLifecycleMethods: true })
+    expect(wrapper.find('.spinner').length).toBe(1)
+  })
+
+  it('Display error', () => {
+    const error = new Error('Error message')
+    const props = {
+      ...defaultImagesState,
+      error
+    }
+    const wrapper = shallow(<Stream {...props} />, { disableLifecycleMethods: true })
+    expect(wrapper.find('.error').length).toBe(1)
   })
 })
