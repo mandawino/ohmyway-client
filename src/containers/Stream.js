@@ -7,14 +7,20 @@ import { getObjectValues, areArraysEqual, countObjectValues } from '../utils/uti
 import {Spinner} from 'reactstrap'
 import { getImagesStarted, getImagesSuccess, getImagesFailure, getImagesEnded } from '../actions/actionCreators'
 
-export class Stream extends Component {
+export const Stream = ({data}) => (
+    data && data.length 
+        ? (<div className="stream">
+            {data.map((url, index) => <Image key={index} image={url}></Image>)}
+        </div>)
+        : <h5 className="message">No image to display</h5>
+)
 
+const withFetch = (url) => (StreamComponent) => class extends Component {
     getImagesFromServer(dispatch){
         dispatch(getImagesStarted())
         const configFetch = {
             method: 'GET'
         };
-        const url = SERVER.config.BASE_URL+'/images';
         fetch(url, configFetch)
             .then(res => {
                 if(res.ok) {
@@ -38,30 +44,22 @@ export class Stream extends Component {
         this.getImagesFromServer(dispatch);
     }
 
-
-    shouldComponentUpdate(nextProps){
-        return nextProps.loading !== this.props.loading
-            || nextProps.error !== this.props.error
-            || !areArraysEqual(nextProps.data, this.props.data)
-            || nextProps.match.params.country !== this.props.match.params.country;
-    }
- 
     render(){
-        const {data, loading, error} = this.props;
-        if(loading){
-            return <Spinner className= "spinner" color="primary"/>
-        }
-        if(error){
-            return <h5 className="message error">{error.message}</h5>
-        }
-        if(!data || !data.length){ //  && Object.entries(images).length
-            return <h5 className="message">No image to display</h5>
-        }
-        return <div className="stream">
-                {data.map((url, index) => <Image key={index} image={url}></Image>)}
-            </div>
+        return <StreamComponent {...this.props}/>
     }
 }
+
+export const withLoading = (Component) => ({loading, ...otherProps}) => {
+    return loading ? <CustomSpinner/> : <Component {...otherProps}/>
+}
+
+export const CustomSpinner = (props) => <Spinner className= "spinner" color="primary"/>
+
+export const withError = (Component) => ({error, ...otherProps}) => 
+    error ? <Error error={error}/> : <Component {...otherProps}/>
+
+export const Error = (props)  => 
+    <h5 className="message error">{props.error.message}</h5>
 
 const getImages = (images, country) => {
     // All images if no country defined 
@@ -77,20 +75,11 @@ const getImages = (images, country) => {
 const mapStateToProps = (state, props) => {
     const {images} = state;
     const visibleImages = getImages(images.data, props.match.params.country);
-    console.log('mapStateToProps', {
-        ...images, data: visibleImages
-    })
     return {
         ...images, data: visibleImages
     }
 }
 
-Stream.propTypes = {
-    images: PropTypes.exact({
-        data: PropTypes.arrayOf(PropTypes.string),
-        loading: PropTypes.bool.isRequired,
-        error: PropTypes.object
-    })
-}
+export const HOCStream = withFetch(SERVER.config.BASE_URL+'/images')(withLoading(withError(Stream)))
 
-export default withRouter(connect(mapStateToProps)(Stream));
+export default withRouter(connect(mapStateToProps)(HOCStream));

@@ -1,11 +1,11 @@
 import React from 'react'
-import ConnectedStream, { Stream } from '../../containers/Stream'
+import ConnectedStream, { Stream, withLoading, withError, HOCStream } from '../../containers/Stream'
 import { shallow, mount } from 'enzyme'
 import propsStreamSuccess from '../data/propsStreamSuccess.json'
 import propsStreamSuccessThailand from '../data/propsStreamSuccessThailand.json'
 import dataFetchGetImages from '../data/dataFetchGetImages.json'
 // import toJson from 'enzyme-to-json'
-import { countObjectValues, getObjectValues } from '../../utils/utils'
+import { countObjectValues } from '../../utils/utils'
 
 function countImages(images, initialCount = 0){
   return Object.keys(images).reduce((result, key) => {
@@ -27,7 +27,7 @@ describe('<Stream />', () => {
   }
 
   it('Display all images', () => {
-    const props = propsStreamSuccess
+    const props = {data: propsStreamSuccess.data}
     const params = {
       match: {params: {country: undefined}}
     }
@@ -37,7 +37,7 @@ describe('<Stream />', () => {
   })
 
   it('Display only thailand images', () => {
-    const props = propsStreamSuccessThailand;
+    const props = {data: propsStreamSuccessThailand.data};
     const params = {
       match: {params: {country: 'thailande'}}
     }
@@ -48,20 +48,18 @@ describe('<Stream />', () => {
 
   it('Display loading', () => {
     const props = {
-      ...defaultImagesState,
       loading: true
     }
-    const wrapper = shallow(<Stream {...props} />, { disableLifecycleMethods: true })
-    expect(wrapper.find('.spinner').length).toBe(1)
+    const wrapper = shallow(withLoading(<Stream/>)(props), { disableLifecycleMethods: true })
+    expect(wrapper.find('.spinner').length).toBe(1);
   })
 
   it('Display error', () => {
     const error = new Error('Error message')
     const props = {
-      ...defaultImagesState,
       error
     }
-    const wrapper = shallow(<Stream {...props} />, { disableLifecycleMethods: true })
-    expect(wrapper.find('.error').length).toBe(1)
+    const wrapper = shallow(withError(<Stream/>)(props), { disableLifecycleMethods: true })
+    expect(wrapper.find('.error').length).toBe(1);
   })
 })
